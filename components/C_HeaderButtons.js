@@ -10,11 +10,10 @@ import {
 } from 'react-native';
 
 const C_HeaderButtons = props => {
-    return <View></View>
-    // return <HeaderButton {...props}
-    //                      IconComponent={Ionicons}
-    //                      iconSize={23}
-    //                      color={Platform.OS === 'android' ? 'white' : CONST_Colors.primary }/>
+    return <HeaderButton {...props}
+                         IconComponent={Ionicons}
+                         iconSize={23}
+                         color={Platform.OS === 'android' ? 'white' : CONST_Colors.primary }/>
 };
 
 export default C_HeaderButtons;

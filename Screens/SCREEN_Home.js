@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useCallback} from 'react';
 import {
     View,
     Text,
@@ -9,9 +9,29 @@ import {
     Platform
 } from 'react-native';
 import C_HeaderButtons from "../components/C_HeaderButtons";
-import {HeaderButton, Item} from "react-navigation-header-buttons";
+import {HeaderButtons, Item} from "react-navigation-header-buttons";
 
 const SCREEN_Home = props => {
+// -------------Navigation
+    const navToAddProdHandler = () => {
+        props.navigation.navigate('AddExercise', {})
+    }
+
+    useEffect(()=>{
+        props.navigation.setOptions({
+            headerRight: () => (
+                <HeaderButtons HeaderButtonComponent={C_HeaderButtons}>
+                    <Item
+                        iconName={Platform.OS === 'android' ? 'md-add-circle' : 'ios-add-circle'}
+                        onPress={navToAddProdHandler}
+                    />
+                </HeaderButtons>)
+        });
+    }, [navToAddProdHandler])
+// -------------Navigation
+
+
+
     return (
         <View style={styles.screen}>
             <Text>This is the Home Screen</Text>
@@ -20,10 +40,13 @@ const SCREEN_Home = props => {
 };
 
 export const screenOptions = navData => {
+
+    // const navToAddProdFN = navData.route.params ? navData.route.params.navToAddProd : null
+
     return{
-        headerTitle: 'All Workouts',
-        headerRight: () => (
-                <C_HeaderButtons HeaderButtonComponent={HeaderButton}>
+        headerTitle: 'My Workouts',
+        headerLeft: () => (
+                <HeaderButtons HeaderButtonComponent={C_HeaderButtons}>
                     <Item
                         title='Add Workout'
                         iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
@@ -31,7 +54,8 @@ export const screenOptions = navData => {
                             navData.navigation.toggleDrawer()
                         }}
                     />
-                </C_HeaderButtons>)
+                </HeaderButtons>),
+
     }
 }
 

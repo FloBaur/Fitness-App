@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
@@ -22,7 +21,7 @@ const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 /////////////////////Store
 
 /////////////////////Fonts
-import {AppLoading} from 'expo'; //font
+import AppLoading from 'expo-app-loading';
 import * as Font from 'expo-font'; //font
 
 const fetchFonts = () => {
@@ -31,22 +30,19 @@ const fetchFonts = () => {
     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
   });
 };
-/////////////////////Fonts
+// /////////////////////Fonts
 
 
 export default function App() {
   /////////////////////Fonts
-  const [fontLoaded, setFontLoaded] = useState(false);
-  if (!fontLoaded) {
-    return (
-        <AppLoading
-            startAsync={fetchFonts}
-            onFinish={() => {
-              setFontLoaded(true);
-            }}
-        />
-    );
-  }
+    const [dataLoaded, setDataLoaded] = useState(false);
+
+    if (!dataLoaded){
+        return <AppLoading startAsync={fetchFonts}
+                           onFinish={() => setDataLoaded(true)}
+                           onError={(err) => console.log(err)}
+        />;
+    }
   /////////////////////Fonts
 
   return (

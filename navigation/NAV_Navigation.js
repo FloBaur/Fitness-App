@@ -1,18 +1,25 @@
 import React from 'react';
 import {
     Platform,
+    View,
+    SafeAreaView,
+    Button,
+    Text
 } from 'react-native';
 
 import {createStackNavigator} from '@react-navigation/stack'
-// import {createDrawerNavigator} from '@react-navigation/drawer'
+import {createDrawerNavigator, DrawerItem, DrawerItemList} from '@react-navigation/drawer'
 
 /// Static stuff
 import CONST_Colors from "../components/constants/CONST_Colors";
-// import { Ionicons } from '@expo/vector-icons';
+import {Ionicons} from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons';
+import {useDispatch} from "react-redux";
 /// Static stuff
 
-import SCREEN_Home, {screenOptions} from "../Screens/SCREEN_Home";
-
+import SCREEN_Home, {screenOptions as homeScreenOptions} from "../Screens/SCREEN_Home";
+import SCREEN_AddWorkout, {screenOptions as addWorkoutOptions} from "../Screens/SCREEN_AddWorkout";
+import SCREEN_AddExercise, {screenOptions as addExerciseOptions} from "../Screens/SCREEN_AddExercise";
 
 const defaultNavOptions = {
     headerStyle: {
@@ -28,12 +35,62 @@ const defaultNavOptions = {
 };
 
 const WorkoutStackNavigator = createStackNavigator();
-export const WorkoutNavigator = () => {
+const NavigationDrawer = createDrawerNavigator();
 
-    return <WorkoutStackNavigator.Navigator screenOptions={defaultNavOptions}>
-        <WorkoutStackNavigator.Screen
-            name='Home Screen'
-            component={SCREEN_Home}
-            options={screenOptions}/>
-    </WorkoutStackNavigator.Navigator>
+const WorkoutNavigator = () => {
+    return (
+        <WorkoutStackNavigator.Navigator screenOptions={defaultNavOptions}>
+            <WorkoutStackNavigator.Screen
+                name='Home Screen'
+                component={SCREEN_Home}
+                options={homeScreenOptions}/>
+            <WorkoutStackNavigator.Screen
+                name='AddWorkout'
+                component={SCREEN_AddWorkout}
+                options={addWorkoutOptions}/>
+            <WorkoutStackNavigator.Screen
+                name='AddExercise'
+                component={SCREEN_AddExercise}
+                options={addExerciseOptions}/>
+        </WorkoutStackNavigator.Navigator>
+    )
 }
+
+export const ShopNavigator = () => {
+    const dispatch = useDispatch();
+
+    return (
+        <NavigationDrawer.Navigator
+            drawerContent={(props) => {
+                return (
+                    <View style={{ flex: 1, paddingTop: 70 }}>
+                        <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+                            <DrawerItemList {...props} />
+                            <Button
+                                title="Logout"
+                                color={CONST_Colors.primary}
+                                onPress={() => {
+                                    // dispatch(authActions.logout());
+                                    // props.navigation.navigate('Auth');
+                                }}
+                            />
+                        </SafeAreaView>
+                    </View>
+                );
+            }}
+            drawerContentOptions={{
+                activeTintColor: CONST_Colors.primary
+            }}
+        >
+        <NavigationDrawer.Screen
+            name="Workouts"
+            component={WorkoutNavigator}
+            options={{
+                drawerIcon: (props) => (
+                    <MaterialIcons name="fitness-center" size={24} color="black" />
+                )
+            }}
+        />
+        </NavigationDrawer.Navigator>
+    );
+};
