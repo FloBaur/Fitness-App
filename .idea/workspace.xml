@@ -2,6 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de70df15-830e-44bf-a092-0ea20e0068b9" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Screens/SCREEN_ExerciseDetails.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Screens/SCREEN_Exercises.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Store/actions/ACTION_Exercises.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Store/reducers/RED_Exercises.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/C_ExerciseList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/constants/CONST_boldText.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/constants/CONST_normalText.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/models/MODEL_Set.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Screens/SCREEN_AddExercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_AddExercise.js" afterDir="false" />
@@ -9,11 +17,8 @@
       <change beforePath="$PROJECT_DIR$/Screens/SCREEN_Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_Home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/C_HeaderButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_HeaderButtons.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/C_ImagePicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_ImagePicker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/C_Input.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_Input.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/C_SetsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_SetsList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/constants/CONST_Colors.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/constants/CONST_Colors.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/models/MODEL_Exercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/models/MODEL_Exercise.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/navigation/NAV_Container.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/NAV_Container.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/NAV_Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/NAV_Navigation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -50,6 +55,11 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.prettier" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -61,19 +71,6 @@
       <recent name="$PROJECT_DIR$/Store/actions" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -82,7 +79,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608916316709</updated>
-      <workItem from="1608916317879" duration="86956000" />
+      <workItem from="1608916317879" duration="88280000" />
+      <workItem from="1609231020145" duration="404000" />
+      <workItem from="1609231437641" duration="365000" />
+      <workItem from="1609231816990" duration="19628000" />
+      <workItem from="1609838977165" duration="7803000" />
+      <workItem from="1609848070185" duration="7977000" />
+      <workItem from="1609865743076" duration="4793000" />
+      <workItem from="1610099048481" duration="40931000" />
+      <workItem from="1610216916006" duration="13622000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1608916393911</created>
@@ -91,7 +96,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608916393911</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="exercises screen">
+      <created>1609187277132</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1609187277132</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -99,6 +111,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="exercises screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="exercises screen" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
