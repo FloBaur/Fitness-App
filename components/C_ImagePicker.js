@@ -3,11 +3,12 @@ import { View, Text, StyleSheet, Image, Button, Alert } from "react-native";
 import CONST_Colors from "./constants/CONST_Colors";
 import * as ImagePicker from "expo-image-picker";
 import * as Permissions from "expo-permissions";
-import icon from "../assets/Dumbells-gym-fitness-workout-icon-by-Hoeda80.jpeg";
 
 const C_imagePicker = (props) => {
   const [pickedImage, setPickedImage] = useState();
   const [defaultImage, setDefaultImage] = useState(false);
+
+  const icon = "../assets/Dumbells-gym-fitness-workout-icon-by-Hoeda80.jpeg";
 
   const verifyPermissions = async () => {
     const resultCam = await Permissions.askAsync(Permissions.CAMERA);
@@ -47,11 +48,11 @@ const C_imagePicker = (props) => {
   let currentImage = null;
 
   if (defaultImage) {
-    image = <Image style={styles.image} source={icon} />;
+    image = <Image style={styles.image} source={require(icon)} />;
   }
   if (props.editMode) {
     if (!props.currentImage) {
-      currentImage = <Image style={styles.image} source={icon} />;
+      currentImage = <Image style={styles.image} source={require(icon)} />;
     } else {
       currentImage = (
         <Image style={styles.image} source={{ uri: props.currentImage }} />

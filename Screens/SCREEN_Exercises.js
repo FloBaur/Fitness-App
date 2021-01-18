@@ -2,12 +2,19 @@ import React, { useEffect } from "react";
 import { View, Text, StyleSheet, Platform, FlatList } from "react-native";
 
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as exercisesActions from "../Store/actions/ACTION_Exercises";
 
 import C_HeaderButtons from "../components/C_HeaderButtons";
 import C_ExerciseList from "../components/C_ExerciseList";
 
 const SCREEN_Exercises = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(exercisesActions.loadExercises());
+  }, [dispatch]);
+
   // -------------Navigation
   const navToAddProdHandler = () => {
     props.navigation.navigate("AddExercise", {});
@@ -71,7 +78,7 @@ const SCREEN_Exercises = (props) => {
   return (
     <View style={styles.list}>
       <FlatList
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={(item, index) => index.toString()}
         data={allExercises}
         renderItem={renderGridItem}
         numColumns={1}

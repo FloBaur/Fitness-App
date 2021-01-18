@@ -125,13 +125,10 @@ const SCREEN_AddExercise = (props) => {
 
   useEffect(() => {
     if (updatedSet.length > 0 && fireDispatchUpdatedSet) {
-      console.log("here is our updated Exercise");
-
       const exercise = createExercise(
         props.route.params.exerciseId,
         updatedSet
       );
-      console.log(exercise);
       dispatch(editExercise(exercise));
       props.navigation.navigate("Exercises", {});
     }
@@ -159,7 +156,7 @@ const SCREEN_AddExercise = (props) => {
   const setInput = (
     <View style={styles.list}>
       <FlatList
-        keyExtractor={(item, index) => item.key}
+        keyExtractor={(item, index) => index.toString()}
         data={inputFields}
         renderItem={(item, index) => {
           return (

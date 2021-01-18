@@ -1,12 +1,10 @@
 class MODEL_Workout {
-    constructor(id, ownerId, categoryId, title, imageUrl, description, exerciseIds) {
-        this.id = id;
-        this.ownerId = ownerId;
-        this.title = title;
-        this.imageUrl = imageUrl;
-        this.description = description;
-        this.exerciseIds = exerciseIds;
-    }
+  constructor(id, title, description, categoryNumber, exercisesFromBasket) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.categoryNumber = categoryNumber;
+    this.exercises = exercisesFromBasket;
+  }
 }
-
 export default MODEL_Workout;

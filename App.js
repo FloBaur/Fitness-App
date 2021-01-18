@@ -11,13 +11,21 @@ import { Provider } from "react-redux";
 import ReduxThunk from "redux-thunk";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 
-import RED_WorkOuts from "./Store/reducers/RED_WorkOuts";
 import RED_Authentication from "./Store/reducers/RED_Authentication";
 import RED_Exercises from "./Store/reducers/RED_Exercises";
+import { init } from "./Helpers/HELP_Db";
+
+init()
+  .then(() => {
+    console.log("Initialized DB");
+  })
+  .catch((err) => {
+    console.log("Initializing failed " + err);
+    throw err;
+  });
 
 const rootReducer = combineReducers({
   exercises: RED_Exercises,
-  workouts: RED_WorkOuts,
   auth: RED_Authentication,
 });
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

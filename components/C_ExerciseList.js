@@ -95,7 +95,7 @@ const C_ExerciseList = (props) => {
             {props.workoutMode ? null : (
               <CONST_boldText>{props.itemData.item.sets} set(s)</CONST_boldText>
             )}
-            <View style={styles.btn}>{props.workoutMode ? null : Button2}</View>
+            {props.workoutMode ? null : Button2}
           </View>
         </View>
       </TouchableOpacity>

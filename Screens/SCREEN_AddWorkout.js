@@ -11,18 +11,20 @@ import {
   Alert,
   FlatList,
 } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import C_ExerciseList from "../components/C_ExerciseList";
 import CONST_Colors from "../components/constants/CONST_Colors";
 import CONST_normalText from "../components/constants/CONST_normalText";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import C_HeaderButtons from "../components/C_HeaderButtons";
+import { addExerciseToBasket } from "../Store/actions/ACTION_Exercises";
 
 const SCREEN_AddWorkout = (props) => {
   const allExercises = useSelector((state) => state.exercises.allExercises);
+  const dispatch = useDispatch();
 
-  const addExerciseToWorkoutHandler = (id) => {
-    alert("Here we Go " + id);
+  const addExerciseToWorkoutHandler = (exercise) => {
+    dispatch(addExerciseToBasket(exercise.id));
   };
 
   useEffect(() => {
@@ -32,7 +34,7 @@ const SCREEN_AddWorkout = (props) => {
           <Item
             iconName={Platform.OS === "android" ? "logo-buffer" : "ios-photos"}
             onPress={() => {
-              props.navigation.navigate("AddWorkout", {});
+              props.navigation.navigate("WorkoutBasket", {});
             }}
           />
         </HeaderButtons>
@@ -83,7 +85,7 @@ const SCREEN_AddWorkout = (props) => {
         Just tab exercises to add it to your workout :)
       </CONST_normalText>
       <FlatList
-        keyExtractor={(item, index) => item.id}
+        keyExtractor={(item, index) => index.toString()}
         data={allExercises}
         renderItem={renderGridItem}
         numColumns={1}
