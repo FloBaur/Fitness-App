@@ -85,7 +85,7 @@ const SCREEN_AddExercise = (props) => {
 
   const buildSetHandler = (index) => {
     if (reps != null && weight != null) {
-      const set = new MODEL_Set(parseInt(index), reps, weight);
+      const set = new MODEL_Set(parseInt(index), reps, weight); //Hier Datenbank anlegen, mit Foreign Key zur aktuellen Exercise
       exerciseSets.push(set);
       setReps(null);
       setWeight(null);
@@ -119,6 +119,8 @@ const SCREEN_AddExercise = (props) => {
 
   const createNewExerciseHandler = () => {
     const exercise = createExercise();
+    //Hier jetzt die Sätze erzeugen
+    //
     dispatch(addExercise(exercise));
     props.navigation.goBack();
   };

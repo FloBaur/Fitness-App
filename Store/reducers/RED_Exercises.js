@@ -1,5 +1,6 @@
 import * as exerciseActions from "../actions/ACTION_Exercises";
 import MODEL_Exercise from "../../components/models/MODEL_Exercise";
+import MODEL_Workout from "../../components/models/MODEL_Workout";
 
 const initialState = {
   allExercises: [],
@@ -15,26 +16,19 @@ const exerciseReducer = (state = initialState, action) => {
         ...state,
         allExercises: state.allExercises.concat(action.exerciseData.exercise),
       };
-    case exerciseActions.SET_EXERCISES:
-      console.log("Thats my Result from DB");
-      console.log(action.exercises);
-      // const exArray =
+    case exerciseActions.LOAD_EXERCISES:
       return {
+        ...state,
         allExercises: action.exercises.map(
           (ex) =>
             new MODEL_Exercise(
-              ex.id.toString(),
+              ex.id,
               ex.title,
               ex.imageUri,
               ex.sets,
               ex.exercises
             )
         ),
-        // this.id = id;
-        // this.title = title;
-        // this.image = image;
-        // this.sets = sets;
-        // this.exercises = exercises;
       };
     case exerciseActions.DELETE_EXERCISE:
       const exercises = [...state.allExercises];
@@ -71,7 +65,26 @@ const exerciseReducer = (state = initialState, action) => {
       return { ...state, workoutBasket: basket };
 
     case exerciseActions.ADD_WORKOUT:
-      return { ...state, workouts: state.workouts.concat(action.workout) };
+      action.workoutData.workout.id = action.workoutData.id;
+      return {
+        ...state,
+        workouts: state.workouts.concat(action.workoutData.workout),
+      };
+
+    case exerciseActions.LOAD_WORKOUTS:
+      return {
+        ...state,
+        workouts: action.workouts.map(
+          (work) =>
+            new MODEL_Workout(
+              work.workoutId,
+              work.title,
+              work.description,
+              work.categoryNumber,
+              work.exercises
+            )
+        ),
+      };
 
     case exerciseActions.CLEAR_BASKET:
       return { ...state, workoutBasket: [] };
@@ -79,7 +92,7 @@ const exerciseReducer = (state = initialState, action) => {
     case exerciseActions.DELETE_WORKOUT:
       const workouts = [...state.workouts];
       const indexOfDelWorkout = workouts.findIndex(
-        (oldWorkout) => oldWorkout.id === action.workoutId
+        (oldWorkout) => oldWorkout.id === action.workId
       );
       workouts.splice(indexOfDelWorkout, 1);
       return { ...state, workouts: workouts };

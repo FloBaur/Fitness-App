@@ -97,7 +97,10 @@ const SCREEN_ExerciseDetails = (props) => {
         <View style={styles.screen}>
           <Image
             source={
-              !chosenExercise.image ? icon : { uri: chosenExercise.image }
+              !chosenExercise.imageUri ||
+              chosenExercise.imageUri === "defaultPicture"
+                ? icon
+                : { uri: chosenExercise.imageUri }
             }
             style={styles.image}
           />

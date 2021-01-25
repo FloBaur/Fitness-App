@@ -17,9 +17,13 @@ import CONST_boldText from "../components/constants/CONST_boldText";
 import CONST_Colors from "../components/constants/CONST_Colors";
 import CONST_defaultPic from "../components/constants/CONST_defaultPic";
 import { deleteWorkout } from "../Store/actions/ACTION_Exercises";
+import * as exercisesActions from "../Store/actions/ACTION_Exercises";
 
 const SCREEN_Home = (props) => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(exercisesActions.loadWorkouts());
+  }, [dispatch]);
 
   // -------------Navigation
 
@@ -40,6 +44,7 @@ const SCREEN_Home = (props) => {
   // -------------Navigation
 
   const workouts = useSelector((state) => state.exercises.workouts);
+
   const [workoutId, setWorkoutId] = useState(null);
   const [workoutDetails, setWorkoutDetails] = useState(null);
   const [showMode, setShowMode] = useState(false);
@@ -51,17 +56,13 @@ const SCREEN_Home = (props) => {
 
   const showDetailsHandler = (workoutID) => {
     setWorkoutId(workoutID);
-
-    // const workout = workouts.find((workout) => workout.id === workoutId);
     const workout = workouts.find((workout) => workout.id === workoutID);
 
+    console.log("FIRST WORKIS FROM STORE");
+    console.log(workout);
     let workoutDetail = null;
-
-    // console.log(workoutID);
-    // console.log(workouts[0].id);
-
     const deleteWorkoutHandler = (workoutId) => {
-      dispatch(deleteWorkout(workoutId));
+      dispatch(deleteWorkout(workoutId)); ///den schauen wir uns gleich an
     };
 
     if (workout) {
@@ -75,7 +76,9 @@ const SCREEN_Home = (props) => {
             <View key={Math.random()} style={styles.items}>
               <Image
                 source={
-                  exercise.image ? { uri: exercise.image } : CONST_defaultPic
+                  exercise.imageUri === "defaultPicture"
+                    ? CONST_defaultPic
+                    : { uri: exercise.imageUri }
                 }
                 style={styles.image}
               />
@@ -83,10 +86,13 @@ const SCREEN_Home = (props) => {
                 <CONST_normalText>{exercise.title}</CONST_normalText>
               </View>
               <View style={{ width: "15%" }}>
-                <CONST_boldText>{exercise.sets} set(s)</CONST_boldText>
+                <CONST_boldText>
+                  {exercise.sets} {exercise.sets.length === 1 ? "set" : "sets"}
+                </CONST_boldText>
               </View>
             </View>
           ))}
+
           <View
             style={{
               marginTop: 10,
@@ -211,7 +217,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   image: {
-    width: 40,
+    width: 50,
     height: "100%",
   },
   items: {

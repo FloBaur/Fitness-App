@@ -11,16 +11,16 @@ import C_ExerciseList from "../components/C_ExerciseList";
 const SCREEN_Exercises = (props) => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(exercisesActions.loadExercises());
-  }, [dispatch]);
-
   // -------------Navigation
   const navToAddProdHandler = () => {
     props.navigation.navigate("AddExercise", {});
   };
 
   const allExercises = useSelector((state) => state.exercises.allExercises);
+
+  useEffect(() => {
+    dispatch(exercisesActions.loadExercises());
+  }, [dispatch]);
 
   useEffect(() => {
     props.navigation.setOptions({
@@ -49,7 +49,7 @@ const SCREEN_Exercises = (props) => {
     props.navigation.navigate("AddExercise", {
       exerciseId: exercise.id,
       exerciseTitle: exercise.title,
-      exerciseImage: exercise.image,
+      exerciseImage: exercise.imageUri,
       exerciseSets: exercise.sets,
       presets: exercise.exercises,
       editingMode: true,
@@ -78,7 +78,7 @@ const SCREEN_Exercises = (props) => {
   return (
     <View style={styles.list}>
       <FlatList
-        keyExtractor={(item, index) => index.toString()}
+        keyExtractor={(item, index) => item.key}
         data={allExercises}
         renderItem={renderGridItem}
         numColumns={1}

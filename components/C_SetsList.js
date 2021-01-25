@@ -14,6 +14,18 @@ const C_SetsList = (props) => {
   let secondBox = null;
   const presets = props.presets;
 
+  // let reps = null;
+  // let weight = null;
+  //
+  // if (typeof props.itemData.set.reps != "undefined") {
+  //   reps = props.itemData.set.reps;
+  //   weight = props.itemData.set.weight;
+  // }
+  // if (typeof props.itemData.reps != "undefined") {
+  //   reps = props.itemData.reps;
+  //   weight = props.itemData.weight;
+  // }
+
   useEffect(() => {
     if (props.fireSet) {
       props.onFire(perfectArray);
@@ -23,13 +35,6 @@ const C_SetsList = (props) => {
   if (props.editMode && perfectArray.length === 0) {
     perfectArray = presets;
   }
-  // if (props.editMode && props.numOfSets < presets.length) {
-  //   const trim = presets.length - props.numOfSets;
-  //   perfectArray.pop();
-  //   console.log("sliced " + trim);
-  //   console.log(perfectArray);
-  // }
-  //only in Edit Mode
   const [editReps, setEditReps] = useState(null);
   const [editWeight, setEditWeight] = useState(null);
 
@@ -42,10 +47,10 @@ const C_SetsList = (props) => {
       if ((editReps && !editWeight) || (editWeight && !editReps)) {
         const mySet = presets.find((set) => set.id === props.index);
         if (editReps) {
-          myVal = mySet.set.weight;
+          myVal = mySet.weight;
         }
         if (editWeight) {
-          myVal = mySet.set.reps;
+          myVal = mySet.reps;
         }
       }
       if (myVal && editReps) {
@@ -136,7 +141,7 @@ const C_SetsList = (props) => {
     firstBox = (
       <View>
         <CONST_boldText ownStyle={{ fontSize: 24 }}>
-          {props.itemData.set.reps}
+          {props.itemData.reps}
         </CONST_boldText>
       </View>
     );
@@ -144,7 +149,7 @@ const C_SetsList = (props) => {
     secondBox = (
       <View>
         <CONST_boldText ownStyle={{ fontSize: 24 }}>
-          {props.itemData.set.weight}
+          {props.itemData.weight}
         </CONST_boldText>
       </View>
     );

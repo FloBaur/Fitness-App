@@ -1,8 +1,9 @@
-class MODEL_Exercise {
+class MODEL_Set {
   constructor(id, reps, weight) {
     this.id = id;
-    this.set = { reps: reps, weight: weight };
+    this.reps = reps;
+    this.weight = weight;
   }
 }
 
-export default MODEL_Exercise;
+export default MODEL_Set;

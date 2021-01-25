@@ -2,33 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de70df15-830e-44bf-a092-0ea20e0068b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Screens/SCREEN_StartWorkout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Screens/SCREEN_WorkoutBasket.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/categoryPictures/ArmWorkout.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/categoryPictures/FullBODY.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/categoryPictures/Heavy.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/categoryPictures/cardioIcon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/categoryPictures/legday.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/categoryPictures/light.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/C_Workout.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/constants/CONST_Categories.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/constants/CONST_defaultPic.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Helpers/HELP_DbRel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Helpers/HELP_Db.js" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/HELP_Db.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Screens/SCREEN_AddExercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_AddExercise.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Screens/SCREEN_AddWorkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_AddWorkout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screens/SCREEN_ExerciseDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_ExerciseDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Screens/SCREEN_Exercises.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_Exercises.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Screens/SCREEN_Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/SCREEN_Workouts.js" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/HELP_Db.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screens/SCREEN_WorkoutBasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_WorkoutBasket.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/actions/ACTION_Exercises.js" beforeDir="false" afterPath="$PROJECT_DIR$/Store/actions/ACTION_Exercises.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/actions/ACTION_WorkOuts.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Store/reducers/RED_Exercises.js" beforeDir="false" afterPath="$PROJECT_DIR$/Store/reducers/RED_Exercises.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/reducers/RED_WorkOuts.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/components/C_ExerciseList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_ExerciseList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/C_ImagePicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_ImagePicker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/models/MODEL_Workout.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/models/MODEL_Workout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/C_SetsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_SetsList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/C_Workout.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_Workout.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/models/MODEL_Exercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/models/MODEL_Exercise.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/models/MODEL_Set.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/models/MODEL_Set.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/NAV_Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/NAV_Navigation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +89,10 @@
       <workItem from="1610216916006" duration="40246000" />
       <workItem from="1610447655322" duration="13006000" />
       <workItem from="1610805215670" duration="23783000" />
+      <workItem from="1610966610732" duration="13079000" />
+      <workItem from="1611221624887" duration="11067000" />
+      <workItem from="1611234460933" duration="24699000" />
+      <workItem from="1611477906014" duration="10070000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1608916393911</created>
@@ -120,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610275571922</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="successfully connected database">
+      <created>1610966657804</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1610966657804</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -130,7 +132,8 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="exercises screen" />
     <MESSAGE value="workout screen is ready" />
-    <option name="LAST_COMMIT_MESSAGE" value="workout screen is ready" />
+    <MESSAGE value="successfully connected database" />
+    <option name="LAST_COMMIT_MESSAGE" value="successfully connected database" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

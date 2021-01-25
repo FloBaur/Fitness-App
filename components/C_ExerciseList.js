@@ -44,16 +44,6 @@ const C_ExerciseList = (props) => {
     </View>
   );
 
-  // let Button3 = (
-  //   <Button
-  //     title="Add this"
-  //     onPress={() => {
-  //       props.onAddExerciseToWorkout(props.itemData.item);
-  //     }}
-  //     color={CONST_Colors.primary}
-  //   />
-  // );
-
   return (
     <View style={styles.gridItem}>
       <TouchableOpacity
@@ -71,9 +61,10 @@ const C_ExerciseList = (props) => {
           <View style={{ ...styles.productRow, ...styles.productHeader }}>
             <ImageBackground
               source={
-                !props.itemData.item.image
+                !props.itemData.item.imageUri ||
+                props.itemData.item.imageUri === "defaultPicture"
                   ? icon
-                  : { uri: props.itemData.item.image }
+                  : { uri: props.itemData.item.imageUri }
               }
               style={styles.bgImage}
             >

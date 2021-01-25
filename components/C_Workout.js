@@ -43,11 +43,11 @@ const C_Workout = (props) => {
 
 const styles = StyleSheet.create({
   screen: {
-    marginHorizontal: 20,
+    marginHorizontal: 15,
     borderColor: "#ccc",
     borderWidth: 1,
     marginVertical: 10,
-    padding: 10,
+    padding: 15,
   },
   idText: {
     width: "5%",
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   idTitle: {
-    width: "35%",
+    width: "30%",
     marginLeft: 5,
     flexDirection: "row",
   },
@@ -66,8 +66,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   image: {
-    width: 50,
-    height: "100%",
+    width: 70,
+    height: "110%",
   },
   btn: { width: 60 },
 });

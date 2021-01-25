@@ -26,7 +26,6 @@ import CONST_Colors from "../components/constants/CONST_Colors";
 import MODEL_Workout from "../components/models/MODEL_Workout";
 import CONST_boldText from "../components/constants/CONST_boldText";
 import CONST_normalText from "../components/constants/CONST_normalText";
-import icon from "../assets/Dumbells-gym-fitness-workout-icon-by-Hoeda80.jpeg";
 import CONST_Categories from "../components/constants/CONST_Categories";
 
 let workoutNumber = 0;
@@ -40,8 +39,6 @@ const SCREEN_WorkoutBasket = (props) => {
   const exercisesInBasket = useSelector(
     (state) => state.exercises.workoutBasket
   );
-  console.log("These Exercises are in the basket");
-  console.log(exercisesInBasket);
   const dispatch = useDispatch();
   let workoutCats = [];
 
@@ -74,11 +71,7 @@ const SCREEN_WorkoutBasket = (props) => {
             <ImageBackground
               source={CONST_Categories[i].categoryPicture}
               style={styles.bgImage}
-            >
-              {/*<View style={{ marginTop: 20 }}>*/}
-
-              {/*</View>*/}
-            </ImageBackground>
+            />
           </View>
           <View style={{ marginBottom: 15 }}>
             <Text>{CONST_Categories[i].categoryName}</Text>
@@ -118,7 +111,9 @@ const SCREEN_WorkoutBasket = (props) => {
       <View style={styles.items}>
         <Image
           source={
-            exercises.item.image ? { uri: exercises.item.image } : require(icon)
+            !exercises.item.image || exercises.item.image === "defaultPicture"
+              ? require(icon)
+              : { uri: exercises.item.image }
           }
           style={styles.image}
         />

@@ -112,10 +112,7 @@ export const ShopNavigator = () => {
               <Button
                 title="Logout"
                 color={CONST_Colors.primary}
-                onPress={() => {
-                  // dispatch(authActions.logout());
-                  // props.navigation.navigate('Auth');
-                }}
+                onPress={() => {}}
               />
             </SafeAreaView>
           </View>

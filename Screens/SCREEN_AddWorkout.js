@@ -81,7 +81,7 @@ const SCREEN_AddWorkout = (props) => {
 
   return (
     <View style={styles.list}>
-      <CONST_normalText ownStyle={{ marginTop: 10 }}>
+      <CONST_normalText ownStyle={{ marginVertical: 10 }}>
         Just tab exercises to add it to your workout :)
       </CONST_normalText>
       <FlatList

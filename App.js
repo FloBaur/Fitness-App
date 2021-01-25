@@ -12,8 +12,33 @@ import ReduxThunk from "redux-thunk";
 import { createStore, combineReducers, applyMiddleware } from "redux";
 
 import RED_Authentication from "./Store/reducers/RED_Authentication";
-import RED_Exercises from "./Store/reducers/RED_Exercises";
-import { init } from "./Helpers/HELP_Db";
+import exerciseReducer from "./Store/reducers/RED_Exercises";
+import {
+  init,
+  initSets,
+  initWorkouts,
+  dropTableExercises,
+  dropTableSets,
+  dropTableWorkouts,
+} from "./Helpers/HELP_Db";
+
+// dropTableExercises()
+//   .then(() => {
+//     console.log("Dropped Table");
+//   })
+//   .catch((err) => {
+//     console.log("Drop failed " + err);
+//     throw err;
+//   });
+//
+// dropTableSets()
+//   .then(() => {
+//     console.log("Dropped Table");
+//   })
+//   .catch((err) => {
+//     console.log("Drop failed " + err);
+//     throw err;
+//   });
 
 init()
   .then(() => {
@@ -24,10 +49,29 @@ init()
     throw err;
   });
 
+initSets()
+  .then(() => {
+    console.log("Initialized Sets");
+  })
+  .catch((err) => {
+    console.log("Initializing failed " + err);
+    throw err;
+  });
+
+initWorkouts()
+  .then(() => {
+    console.log("Initialized Workouts");
+  })
+  .catch((err) => {
+    console.log("Initializing failed " + err);
+    throw err;
+  });
+
 const rootReducer = combineReducers({
-  exercises: RED_Exercises,
+  exercises: exerciseReducer,
   auth: RED_Authentication,
 });
+
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));
 /////////////////////Store
 
