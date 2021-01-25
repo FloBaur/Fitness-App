@@ -94,12 +94,12 @@ const SCREEN_WorkoutBasket = (props) => {
       exercisesFromBasket
     );
     workoutNumber = workoutNumber + 1;
-    dispatch(addWorkout(workout));
-    dispatch(clearBasket());
     Alert.alert("New workout!", `You successfully created a new workout`, [
       {
         text: "OKAY COOL",
         onPress: () => {
+          dispatch(addWorkout(workout));
+          dispatch(clearBasket());
           props.navigation.goBack();
         },
       },

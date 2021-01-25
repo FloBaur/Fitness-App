@@ -38,6 +38,10 @@ import SCREEN_WorkoutBasket, {
   screenOptions as workoutBasketDetailOptions,
 } from "../Screens/SCREEN_WorkoutBasket";
 
+import SCREEN_StartWorkout, {
+  screenOptions as startWorkoutDetailOptions,
+} from "../Screens/SCREEN_StartWorkout";
+
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? CONST_Colors.primary : "",
@@ -73,6 +77,11 @@ const WorkoutNavigator = () => {
         component={SCREEN_WorkoutBasket}
         options={workoutBasketDetailOptions}
       />
+      <WorkoutStackNavigator.Screen
+        name="StartWorkout"
+        component={SCREEN_StartWorkout}
+        options={startWorkoutDetailOptions}
+      />
     </WorkoutStackNavigator.Navigator>
   );
 };
@@ -100,7 +109,7 @@ const ExerciseNavigator = () => {
 };
 
 export const ShopNavigator = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   return (
     <NavigationDrawer.Navigator

@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="de70df15-830e-44bf-a092-0ea20e0068b9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Helpers/HELP_DbRel.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/C_StartWorkoutExercise.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helpers/HELP_Db.js" beforeDir="false" afterPath="$PROJECT_DIR$/Helpers/HELP_Db.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/SCREEN_AddExercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_AddExercise.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/SCREEN_AddWorkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_AddWorkout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/SCREEN_ExerciseDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_ExerciseDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Screens/SCREEN_Exercises.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_Exercises.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Screens/SCREEN_Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Screens/SCREEN_StartWorkout.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_StartWorkout.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Screens/SCREEN_WorkoutBasket.js" beforeDir="false" afterPath="$PROJECT_DIR$/Screens/SCREEN_WorkoutBasket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/actions/ACTION_Exercises.js" beforeDir="false" afterPath="$PROJECT_DIR$/Store/actions/ACTION_Exercises.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Store/reducers/RED_Exercises.js" beforeDir="false" afterPath="$PROJECT_DIR$/Store/reducers/RED_Exercises.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/C_ExerciseList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_ExerciseList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/C_SetsList.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_SetsList.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/components/C_Workout.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/C_Workout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/models/MODEL_Exercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/models/MODEL_Exercise.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/models/MODEL_Set.js" beforeDir="false" afterPath="$PROJECT_DIR$/components/models/MODEL_Set.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/navigation/NAV_Navigation.js" beforeDir="false" afterPath="$PROJECT_DIR$/navigation/NAV_Navigation.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -70,6 +59,19 @@
       <recent name="$PROJECT_DIR$/Store/actions" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -93,6 +95,7 @@
       <workItem from="1611221624887" duration="11067000" />
       <workItem from="1611234460933" duration="24699000" />
       <workItem from="1611477906014" duration="10070000" />
+      <workItem from="1611572713693" duration="9050000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1608916393911</created>
@@ -122,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610966657804</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="successfully database works">
+      <created>1611572999885</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1611572999885</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,7 +143,8 @@
     <MESSAGE value="exercises screen" />
     <MESSAGE value="workout screen is ready" />
     <MESSAGE value="successfully connected database" />
-    <option name="LAST_COMMIT_MESSAGE" value="successfully connected database" />
+    <MESSAGE value="successfully database works" />
+    <option name="LAST_COMMIT_MESSAGE" value="successfully database works" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -7,6 +7,7 @@ import {
   Platform,
   FlatList,
   Image,
+  Alert,
 } from "react-native";
 import C_HeaderButtons from "../components/C_HeaderButtons";
 import C_Workout from "../components/C_Workout";
@@ -18,11 +19,16 @@ import CONST_Colors from "../components/constants/CONST_Colors";
 import CONST_defaultPic from "../components/constants/CONST_defaultPic";
 import { deleteWorkout } from "../Store/actions/ACTION_Exercises";
 import * as exercisesActions from "../Store/actions/ACTION_Exercises";
+import * as actions from "../Store/actions/ACTION_Exercises";
 
 const SCREEN_Home = (props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(exercisesActions.loadWorkouts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(exercisesActions.loadExercises());
   }, [dispatch]);
 
   // -------------Navigation
@@ -57,12 +63,9 @@ const SCREEN_Home = (props) => {
   const showDetailsHandler = (workoutID) => {
     setWorkoutId(workoutID);
     const workout = workouts.find((workout) => workout.id === workoutID);
-
-    console.log("FIRST WORKIS FROM STORE");
-    console.log(workout);
     let workoutDetail = null;
     const deleteWorkoutHandler = (workoutId) => {
-      dispatch(deleteWorkout(workoutId)); ///den schauen wir uns gleich an
+      dispatch(deleteWorkout(workoutId));
     };
 
     if (workout) {
@@ -118,14 +121,35 @@ const SCREEN_Home = (props) => {
     }
 
     setWorkoutDetails(workoutDetail);
-    // const numOfExercises = workout.exercises.length;
     setShowMode(true);
 
     const numOfExercises = workout.exercises.length;
     setHeight(calculateHeight(numOfExercises));
   };
-  const startWorkoutHandler = (workoutId) => {
-    alert("Das Training geht los" + workoutId);
+  const startWorkoutHandler = (workoutId, workoutTitle) => {
+    Alert.alert(
+      "Ready for start?",
+      `You will start ${workoutTitle} now`,
+      [
+        {
+          text: "Cancel",
+          onPress: () => {
+            return null;
+          },
+          style: "cancel",
+        },
+        {
+          text: "Let's go!",
+          onPress: () => {
+            props.navigation.navigate("StartWorkout", {
+              workoutId: workoutId,
+              workoutTitle: workoutTitle,
+            });
+          },
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   const hideDetailsHandler = () => {
@@ -153,7 +177,9 @@ const SCREEN_Home = (props) => {
           workoutData={workouts.item}
           extraData={null}
           onDetail={(workoutId) => showDetailsHandler(workoutId)}
-          onStart={(workoutId) => startWorkoutHandler(workoutId)}
+          onStart={(workoutId, workoutTitle) =>
+            startWorkoutHandler(workoutId, workoutTitle)
+          }
           onHide={() => hideDetailsHandler}
           show={showMode}
         />

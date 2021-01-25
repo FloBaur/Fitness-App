@@ -31,7 +31,9 @@ const C_Workout = (props) => {
         <View style={styles.btn}>
           <Button
             title="Start"
-            onPress={() => props.onStart(props.workoutData.id)}
+            onPress={() =>
+              props.onStart(props.workoutData.id, props.workoutData.title)
+            }
             color={CONST_Colors.primary}
           />
         </View>
