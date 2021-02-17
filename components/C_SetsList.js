@@ -14,18 +14,6 @@ const C_SetsList = (props) => {
   let secondBox = null;
   const presets = props.presets;
 
-  // let reps = null;
-  // let weight = null;
-  //
-  // if (typeof props.itemData.set.reps != "undefined") {
-  //   reps = props.itemData.set.reps;
-  //   weight = props.itemData.set.weight;
-  // }
-  // if (typeof props.itemData.reps != "undefined") {
-  //   reps = props.itemData.reps;
-  //   weight = props.itemData.weight;
-  // }
-
   useEffect(() => {
     if (props.fireSet) {
       props.onFire(perfectArray);
@@ -67,10 +55,8 @@ const C_SetsList = (props) => {
         sets = allSets;
       } else {
         sets.push(newSet);
-        // }
       }
 
-      console.log("hier kommt der Merge");
       let merged = [];
 
       for (let i = 0; i < perfectArray.length; i++) {
@@ -80,7 +66,6 @@ const C_SetsList = (props) => {
         });
       }
       perfectArray = merged;
-      // console.log(perfectArray);
       sets = [];
     } catch (err) {
       console.log(err);

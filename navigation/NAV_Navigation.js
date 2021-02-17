@@ -1,5 +1,12 @@
 import React from "react";
-import { Platform, View, SafeAreaView, Button, Text } from "react-native";
+import {
+  Platform,
+  View,
+  SafeAreaView,
+  Button,
+  Text,
+  TouchableOpacity,
+} from "react-native";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import {
@@ -42,6 +49,22 @@ import SCREEN_StartWorkout, {
   screenOptions as startWorkoutDetailOptions,
 } from "../Screens/SCREEN_StartWorkout";
 
+import SCREEN_StartWorkoutExercises, {
+  screenOptions as startWorkoutExercisesDetailOptions,
+} from "../Screens/SCREEN_StartWorkoutExercises";
+
+import SCREEN_Statistics, {
+  screenOptions as statisticsDetailOptions,
+} from "../Screens/SCREEN_Statistics";
+
+import SCREEN_History, {
+  screenOptions as historyDetailOptions,
+} from "../Screens/SCREEN_History";
+
+import SCREEN_HistoryDetails, {
+  screenOptions as historyOptions,
+} from "../Screens/SCREEN_HistoryDetails";
+
 const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? CONST_Colors.primary : "",
@@ -82,6 +105,11 @@ const WorkoutNavigator = () => {
         component={SCREEN_StartWorkout}
         options={startWorkoutDetailOptions}
       />
+      <WorkoutStackNavigator.Screen
+        name="StartWorkoutExercises"
+        component={SCREEN_StartWorkoutExercises}
+        options={startWorkoutExercisesDetailOptions}
+      />
     </WorkoutStackNavigator.Navigator>
   );
 };
@@ -108,6 +136,35 @@ const ExerciseNavigator = () => {
   );
 };
 
+const StatisticsNavigator = () => {
+  return (
+    <ExerciseStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <ExerciseStackNavigator.Screen
+        name="Statistics"
+        component={SCREEN_Statistics}
+        options={statisticsDetailOptions}
+      />
+    </ExerciseStackNavigator.Navigator>
+  );
+};
+
+const HistoryNavigator = () => {
+  return (
+    <ExerciseStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <ExerciseStackNavigator.Screen
+        name="History"
+        component={SCREEN_History}
+        options={historyDetailOptions}
+      />
+      <ExerciseStackNavigator.Screen
+        name="HistoryDetail"
+        component={SCREEN_HistoryDetails}
+        options={historyOptions}
+      />
+    </ExerciseStackNavigator.Navigator>
+  );
+};
+
 export const ShopNavigator = () => {
   // const dispatch = useDispatch();
 
@@ -119,7 +176,8 @@ export const ShopNavigator = () => {
             <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
               <DrawerItemList {...props} />
               <Button
-                title="Logout"
+                title="KEEP ON MOVING"
+                disabled={true}
                 color={CONST_Colors.primary}
                 onPress={() => {}}
               />
@@ -136,7 +194,7 @@ export const ShopNavigator = () => {
         component={WorkoutNavigator}
         options={{
           drawerIcon: (props) => (
-            <FontAwesome5 name="running" size={24} color="black" />
+            <FontAwesome5 name="running" size={26} color="black" />
           ),
         }}
       />
@@ -146,6 +204,30 @@ export const ShopNavigator = () => {
         options={{
           drawerIcon: (props) => (
             <MaterialIcons name="fitness-center" size={24} color="black" />
+          ),
+        }}
+      />
+      <NavigationDrawer.Screen
+        name="Statistics"
+        component={StatisticsNavigator}
+        options={{
+          drawerIcon: (props) => (
+            <Ionicons
+              name={
+                Platform.OS === "android" ? "md-trending-up" : "ios-trending-up"
+              }
+              size={24}
+              color="black"
+            />
+          ),
+        }}
+      />
+      <NavigationDrawer.Screen
+        name="History"
+        component={HistoryNavigator}
+        options={{
+          drawerIcon: (props) => (
+            <MaterialIcons name="history" size={24} color="black" />
           ),
         }}
       />

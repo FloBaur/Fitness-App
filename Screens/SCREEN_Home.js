@@ -1,7 +1,6 @@
 import React, { useEffect, useCallback, useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Button,
   Platform,
@@ -64,8 +63,27 @@ const SCREEN_Home = (props) => {
     setWorkoutId(workoutID);
     const workout = workouts.find((workout) => workout.id === workoutID);
     let workoutDetail = null;
-    const deleteWorkoutHandler = (workoutId) => {
-      dispatch(deleteWorkout(workoutId));
+    const deleteWorkoutHandler = (workoutId, workoutTitle) => {
+      Alert.alert(
+        "Watch out!",
+        `You will now delete ${workoutTitle}. Are you sure?`,
+        [
+          {
+            text: "Cancel",
+            onPress: () => {
+              return null;
+            },
+            style: "cancel",
+          },
+          {
+            text: "OK",
+            onPress: () => {
+              dispatch(deleteWorkout(workoutId));
+            },
+          },
+        ],
+        { cancelable: false }
+      );
     };
 
     if (workout) {
@@ -106,7 +124,7 @@ const SCREEN_Home = (props) => {
             <View style={styles.btn}>
               <Button
                 title="DELETE"
-                onPress={() => deleteWorkoutHandler(workout.id)}
+                onPress={() => deleteWorkoutHandler(workout.id, workout.title)}
                 color="grey"
               />
             </View>
@@ -126,7 +144,7 @@ const SCREEN_Home = (props) => {
     const numOfExercises = workout.exercises.length;
     setHeight(calculateHeight(numOfExercises));
   };
-  const startWorkoutHandler = (workoutId, workoutTitle) => {
+  const startWorkoutHandler = (workoutId, workoutTitle, CatId) => {
     Alert.alert(
       "Ready for start?",
       `You will start ${workoutTitle} now`,
@@ -144,6 +162,7 @@ const SCREEN_Home = (props) => {
             props.navigation.navigate("StartWorkout", {
               workoutId: workoutId,
               workoutTitle: workoutTitle,
+              workoutCatID: CatId,
             });
           },
         },
@@ -165,7 +184,9 @@ const SCREEN_Home = (props) => {
           workoutData={workouts.item}
           extraData={workoutDetails}
           onDetail={(workoutId) => showDetailsHandler(workoutId)}
-          onStart={(workoutId) => startWorkoutHandler(workoutId)}
+          onStart={(workoutId, workoutTitle, workoutCategoryNumber) =>
+            startWorkoutHandler(workoutId, workoutTitle, workoutCategoryNumber)
+          }
           onHide={hideDetailsHandler}
           show={showMode}
           height={height}
@@ -177,8 +198,8 @@ const SCREEN_Home = (props) => {
           workoutData={workouts.item}
           extraData={null}
           onDetail={(workoutId) => showDetailsHandler(workoutId)}
-          onStart={(workoutId, workoutTitle) =>
-            startWorkoutHandler(workoutId, workoutTitle)
+          onStart={(workoutId, workoutTitle, workoutCategoryNumber) =>
+            startWorkoutHandler(workoutId, workoutTitle, workoutCategoryNumber)
           }
           onHide={() => hideDetailsHandler}
           show={showMode}

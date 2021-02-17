@@ -12,8 +12,12 @@ import {
 } from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import C_HeaderButtons from "../components/C_HeaderButtons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import C_StartWorkoutExercise from "../components/C_StartWorkoutExercise";
+import CONST_boldText from "../components/constants/CONST_boldText";
+import * as exercisesActions from "../Store/actions/ACTION_Exercises";
+import * as statisticActions from "../Store/actions/ACTION_Statistics";
+import MODEL_HistoryWorkout from "../components/models/MODEL_HistoryWorkout";
 
 const SCREEN_StartWorkout = (props) => {
   const chosenWorkout = useSelector((state) =>
@@ -22,25 +26,56 @@ const SCREEN_StartWorkout = (props) => {
     )
   );
 
-  useEffect(() => {
-    props.navigation.setOptions({
-      headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={C_HeaderButtons}>
-          <Item
-            iconName={
-              Platform.OS === "android"
-                ? "md-checkbox-outline"
-                : "ios-checkbox-outline"
-            }
-            onPress={() => props.navigation.navigate("AddWorkout", {})}
-          />
-        </HeaderButtons>
-      ),
-    });
-  });
+  const myCurrentWorkout = useSelector(
+    (state) => state.exercises.currentWorkout
+  );
+  const dispatch = useDispatch();
 
+  if (myCurrentWorkout.length === chosenWorkout.exercises.length) {
+    const historyWorkout = new MODEL_HistoryWorkout(
+      Math.floor(Math.random() * 1000),
+      props.route.params.workoutTitle,
+      myCurrentWorkout,
+      props.route.params.workoutCatID
+    );
+
+    Alert.alert(
+      "Finish!!!",
+      `You successfully finished your workout`,
+      [
+        {
+          text: "Nice",
+          onPress: () => {
+            dispatch(exercisesActions.resetCurrentWorkout());
+            dispatch(statisticActions.addWorkoutToHistory(historyWorkout));
+            props.navigation.navigate("Home Screen");
+          },
+        },
+      ],
+      { cancelable: false }
+    );
+  }
+
+  const onPressExerciseHandler = (exerciseId, exerciseTitle, index) => {
+    props.navigation.navigate("StartWorkoutExercises", {
+      exerciseId: exerciseId,
+      currentId: index,
+      workoutTitle: exerciseTitle,
+    });
+  };
+
+  let doneWorkoutIds = [];
+  myCurrentWorkout.map((workout) => doneWorkoutIds.push(workout.currentId));
+
+  console.log(doneWorkoutIds);
   return (
     <View style={styles.screen}>
+      <View style={{ marginTop: 10 }}>
+        <CONST_boldText>
+          You have done {myCurrentWorkout.length} of{" "}
+          {chosenWorkout.exercises.length} exercises
+        </CONST_boldText>
+      </View>
       <FlatList
         keyExtractor={(item, index) => index.toString()}
         data={chosenWorkout.exercises}
@@ -48,11 +83,15 @@ const SCREEN_StartWorkout = (props) => {
           return (
             <C_StartWorkoutExercise
               itemData={chosenWorkout.exercises[item.index]}
+              currentExId={item.index}
+              onPressExercise={(exerciseId, exerciseTitle, currentExId) =>
+                onPressExerciseHandler(exerciseId, exerciseTitle, currentExId)
+              }
+              doneWorkoutIds={doneWorkoutIds}
             />
           );
         }}
         numColumns={2}
-        // style={{ width: "100%" }}
       />
     </View>
   );
@@ -60,6 +99,7 @@ const SCREEN_StartWorkout = (props) => {
 
 export const screenOptions = (navData) => {
   const workoutTitle = navData.route.params.workoutTitle;
+  const dispatch = useDispatch();
 
   return {
     headerTitle: workoutTitle,
@@ -87,6 +127,7 @@ export const screenOptions = (navData) => {
                 {
                   text: "Yes please!",
                   onPress: () => {
+                    dispatch(exercisesActions.resetCurrentWorkout());
                     navData.navigation.goBack();
                   },
                 },

@@ -13,6 +13,8 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 
 import RED_Authentication from "./Store/reducers/RED_Authentication";
 import exerciseReducer from "./Store/reducers/RED_Exercises";
+import statisticReducer from "./Store/reducers/RED_Statistics";
+
 import {
   init,
   initSets,
@@ -70,6 +72,7 @@ initWorkouts()
 const rootReducer = combineReducers({
   exercises: exerciseReducer,
   auth: RED_Authentication,
+  statistics: statisticReducer,
 });
 
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk));

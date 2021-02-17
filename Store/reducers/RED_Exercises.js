@@ -1,11 +1,13 @@
 import * as exerciseActions from "../actions/ACTION_Exercises";
 import MODEL_Exercise from "../../components/models/MODEL_Exercise";
 import MODEL_Workout from "../../components/models/MODEL_Workout";
+import { ADD_DONE_EXERCISE_TO_CURRENT_WORKOUT } from "../actions/ACTION_Exercises";
 
 const initialState = {
   allExercises: [],
   workoutBasket: [],
   workouts: [],
+  currentWorkout: [],
 };
 
 const exerciseReducer = (state = initialState, action) => {
@@ -96,6 +98,19 @@ const exerciseReducer = (state = initialState, action) => {
       );
       workouts.splice(indexOfDelWorkout, 1);
       return { ...state, workouts: workouts };
+
+    case exerciseActions.ADD_DONE_EXERCISE_TO_CURRENT_WORKOUT:
+      return {
+        ...state,
+        currentWorkout: state.currentWorkout.concat(action.exercise),
+      };
+
+    case exerciseActions.RESET_CURRENT_WORKOUT:
+      return {
+        ...state,
+        currentWorkout: [],
+      };
+
     default:
       return state;
   }

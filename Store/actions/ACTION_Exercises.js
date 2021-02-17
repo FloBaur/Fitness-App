@@ -26,12 +26,23 @@ export const ADD_WORKOUT = "ADD_WORKOUT";
 export const LOAD_WORKOUTS = "LOAD_WORKOUTS";
 export const CLEAR_BASKET = "CLEAR_BASKET";
 export const DELETE_WORKOUT = "DELETE_WORKOUT";
+export const ADD_DONE_EXERCISE_TO_CURRENT_WORKOUT =
+  "ADD_DONE_EXERCISE_TO_CURRENT_WORKOUT";
+export const RESET_CURRENT_WORKOUT = "RESET_CURRENT_WORKOUT";
 
 export {
   insertExercise,
   insertSets,
   insertWorkout,
 } from "../../Helpers/HELP_Db";
+
+export const addDoneExerciseToCurrentWorkout = (exercise) => {
+  return { type: ADD_DONE_EXERCISE_TO_CURRENT_WORKOUT, exercise: exercise };
+};
+
+export const resetCurrentWorkout = () => {
+  return { type: RESET_CURRENT_WORKOUT };
+};
 
 export const addExerciseToBasket = (id) => {
   return { type: ADD_EXERCISE_TO_BASKET, exerciseId: id };

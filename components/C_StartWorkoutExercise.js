@@ -15,25 +15,30 @@ import CONST_Colors from "./constants/CONST_Colors";
 import icon from "../assets/Dumbells-gym-fitness-workout-icon-by-Hoeda80.jpeg";
 
 const C_StartWorkoutExercise = (props) => {
-  console.log("Exercises");
-  console.log(props.itemData.id);
+  let done = false;
 
-  const goToDetailsHandler = (exerciseId, exerciseTitle) => {
-    props.navigation.navigate("StartWorkoutExercise", {
-      exerciseId: exerciseId,
-      workoutTitle: exerciseTitle,
-    });
-  };
+  props.doneWorkoutIds.map((wId) => {
+    if (props.currentExId === wId) {
+      done = true;
+    }
+  });
+
+  console.log(props.currentExId);
 
   return (
-    <View style={styles.gridItem}>
+    <View style={done ? styles.gridItemDone : styles.gridItem}>
       <TouchableOpacity
+        disabled={done}
         onPress={() =>
-          goToDetailsHandler(props.itemData.id, props.itemData.title)
+          props.onPressExercise(
+            props.itemData.id,
+            props.itemData.title,
+            props.currentExId
+          )
         }
       >
         <View>
-          <View style={{ ...styles.productRow, ...styles.productHeader }}>
+          <View style={{ ...styles.productHeader }}>
             <ImageBackground
               source={
                 !props.itemData.imageUri ||
@@ -43,26 +48,16 @@ const C_StartWorkoutExercise = (props) => {
               }
               style={styles.bgImage}
             >
-              <View style={styles.titleContainer}>
+              <CONST_boldText ownStyle={styles.subTitle}>
+                {props.itemData.sets}
+              </CONST_boldText>
+              <View style={done ? styles.doneWorkout : styles.titleContainer}>
                 <CONST_boldText ownStyle={styles.title}>
                   {props.itemData.title}
                 </CONST_boldText>
               </View>
             </ImageBackground>
           </View>
-          {/*<View*/}
-          {/*  style={*/}
-          {/*    props.workoutMode*/}
-          {/*      ? { ...styles.workoutStyle }*/}
-          {/*      : { ...styles.productRow, ...styles.productDetail }*/}
-          {/*  }*/}
-          {/*>*/}
-          {/*  /!*<View style={styles.btn}>{Button1}</View>*!/*/}
-          {/*  {props.workoutMode ? null : (*/}
-          {/*    <CONST_boldText>{props.itemData.sets} set(s)</CONST_boldText>*/}
-          {/*  )}*/}
-          {/*  /!*{props.workoutMode ? null : Button2}*!/*/}
-          {/*</View>*/}
         </View>
       </TouchableOpacity>
     </View>
@@ -81,20 +76,46 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: CONST_Colors.accent,
   },
-  // productRow: {
-  //   flexDirection: "row",
-  // },
+
+  gridItemDone: {
+    height: Dimensions.get("window").height / 5,
+    width: Dimensions.get("window").height / 5,
+    backgroundColor: "lightgrey",
+    marginVertical: 15,
+    marginHorizontal: 10,
+    borderRadius: 10,
+    opacity: 0.3,
+    overflow: "hidden",
+    borderWidth: 1,
+    borderColor: CONST_Colors.primary,
+  },
   titleContainer: {
     backgroundColor: "rgba(0,0,0,0.5)",
     paddingVertical: 5,
     paddingHorizontal: 12,
   },
 
+  doneWorkout: {
+    backgroundColor: CONST_Colors.primary,
+    paddingVertical: 5,
+    paddingHorizontal: 12,
+  },
+
   title: {
-    fontFamily: "open-sans-bold",
     fontSize: 18,
     color: "white",
     textAlign: "center",
+  },
+
+  subTitle: {
+    fontSize: 18,
+    color: CONST_Colors.primary,
+    marginLeft: "86%",
+    marginBottom: "58%",
+  },
+
+  productHeader: {
+    height: "100%",
   },
 
   bgImage: {

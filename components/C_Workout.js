@@ -32,7 +32,11 @@ const C_Workout = (props) => {
           <Button
             title="Start"
             onPress={() =>
-              props.onStart(props.workoutData.id, props.workoutData.title)
+              props.onStart(
+                props.workoutData.id,
+                props.workoutData.title,
+                props.workoutData.categoryNumber
+              )
             }
             color={CONST_Colors.primary}
           />
