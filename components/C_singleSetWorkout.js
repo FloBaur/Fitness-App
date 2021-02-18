@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -9,14 +9,11 @@ import {
   Alert,
 } from "react-native";
 import CONST_boldText from "./constants/CONST_boldText";
-import { useDispatch } from "react-redux";
+import CONST_Colors from "./constants/CONST_Colors";
 import { addStarToStatics } from "../Store/actions/ACTION_Statistics";
 
-import CONST_Colors from "./constants/CONST_Colors";
-import * as actions from "../Store/actions/ACTION_Exercises";
-
 const C_singleSetWorkout = (props) => {
-  const dispatch = useDispatch();
+  const [backgroundColor, setBackgroundColor] = useState("lightgrey");
 
   const firstBox = (
     <Text style={{ fontSize: 18 }}>{props.myExercise.item.reps}</Text>
@@ -27,25 +24,15 @@ const C_singleSetWorkout = (props) => {
 
   const [reps, setReps] = useState(0);
   const [weight, setWeight] = useState(0);
-  const [backgroundColor, setBackgroundColor] = useState("lightgrey");
 
   const moreOrLess = (reps, weight) => {
     const power = reps * weight;
     const oldPower = props.myExercise.item.reps * props.myExercise.item.weight;
     if (power > oldPower) {
-      Alert.alert("Congrats!", `You have beaten your goal`, [
-        {
-          text: "NICE",
-          onPress: () => {
-            return null;
-          },
-        },
-      ]);
       setBackgroundColor("lightgreen");
-      dispatch(addStarToStatics(1, new Date(), "normal"));
+      // dispatch(addStarToStatics(1, new Date(), "normal"));
       return "green";
     } else if (power < oldPower) {
-      alert("Next Time you will beat it");
       setBackgroundColor("#f99898");
       return "red";
     } else {
@@ -56,15 +43,8 @@ const C_singleSetWorkout = (props) => {
 
   const doneSetHandler = (id) => {
     const color = moreOrLess(reps, weight);
-
-    const doneSet = {
-      id: id,
-      reps: reps,
-      weight: weight,
-      color: color,
-    };
-
-    props.onDone(doneSet);
+    console.log("Die Farbe ist" + color);
+    props.onDone(id, reps, weight, color);
   };
 
   return (

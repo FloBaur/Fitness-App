@@ -7,9 +7,7 @@ import C_historyWorkout from "../components/C_historyWorkout";
 
 const SCREEN_History = (props) => {
   const myHistory = useSelector((state) => state.statistics.workoutHistory);
-
-  console.log("Wie lang i no leeb");
-  console.log(myHistory);
+  const revHistory = myHistory.reverse();
 
   const onPressDetailHandler = (id, title) => {
     const thisHistory = myHistory.find((history) => history.id === id);
@@ -40,10 +38,11 @@ const SCREEN_History = (props) => {
       <View style={styles.screen}>
         <FlatList
           keyExtractor={(item, index) => index.toString()}
-          data={myHistory}
+          data={revHistory}
           renderItem={renderHistory}
           numColumns={1}
           style={{ width: "100%" }}
+          // inverted={true}
         />
       </View>
     );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   View,
   Text,
@@ -22,6 +22,7 @@ import CONST_boldText from "../components/constants/CONST_boldText";
 import CONST_Colors from "../components/constants/CONST_Colors";
 import C_singleSetWorkout from "../components/C_singleSetWorkout";
 import C_ExerciseList from "../components/C_ExerciseList";
+import { addStarToStatics } from "../Store/actions/ACTION_Statistics";
 
 let set = [];
 
@@ -38,22 +39,29 @@ const SCREEN_StartWorkoutExercises = (props) => {
     dispatch(exercisesActions.loadExercises());
   }, [dispatch]);
 
-  console.log("Here we GO");
+  useEffect(() => {
+    set = [];
+  }, [dispatch]);
 
-  const doneSetHandler = (doneSet) => {
+  const doneSetHandler = (id, reps, weight, color) => {
+    const doneSet = {
+      id: id,
+      reps: reps,
+      weight: weight,
+      color: color,
+    };
+
     if (set.length === 0) {
       set.push(doneSet);
     } else {
-      const setExistst = set.findIndex((set) => set.id === doneSet.id);
-      if (setExistst > 0) {
-        set.splice(setExistst, 1);
+      const setExists = set.findIndex((set) => set.id === doneSet.id);
+      if (setExists >= 0) {
+        set.splice(setExists, 1);
       }
       set.push(doneSet);
     }
 
-    // alert(set.length + " von " + myExercise.exercises.length);
-
-    if (set.length >= myExercise.exercises.length) {
+    if (set.length === myExercise.exercises.length) {
       Alert.alert(
         "finished?",
         `Is everything okay?`,
@@ -89,6 +97,12 @@ const SCREEN_StartWorkoutExercises = (props) => {
         { cancelable: false }
       );
 
+      if (color === "green") {
+        Alert.alert("Congrats!", `You have beaten your goal`, [
+          { cancelable: false },
+        ]);
+      }
+
       let green = 0;
       let red = 0;
       let same = 0;
@@ -107,13 +121,13 @@ const SCREEN_StartWorkoutExercises = (props) => {
     }
   };
 
-  console.log(set);
-
   const renderGridItem = (itemData) => {
     return (
       <C_singleSetWorkout
         myExercise={itemData}
-        onDone={(id) => doneSetHandler(id)}
+        onDone={(id, reps, weight, color) =>
+          doneSetHandler(id, reps, weight, color)
+        }
       />
     );
   };
