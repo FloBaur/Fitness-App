@@ -18,8 +18,6 @@ import CONST_Colors from "../components/constants/CONST_Colors";
 import icon from "../assets/Dumbells-gym-fitness-workout-icon-by-Hoeda80.jpeg";
 
 const SCREEN_HistoryDetails = (props) => {
-  console.log("This is my history data");
-
   const historyWorkoutData = props.route.params.history.workout;
 
   return (

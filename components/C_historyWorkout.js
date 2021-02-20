@@ -15,8 +15,12 @@ import CONST_Categories from "./constants/CONST_Categories";
 const C_historyWorkout = (props) => {
   const history = props.historyData.item;
 
-  console.log("TAKE TIME");
-  console.log(history.catId);
+  const date = history.date;
+  let objDate = null;
+
+  if (typeof date === "string") {
+    objDate = new Date(date);
+  }
 
   const workoutCat = CONST_Categories.find(
     (category) => category.categoryNumber === history.catId
@@ -30,7 +34,12 @@ const C_historyWorkout = (props) => {
         }}
       >
         <View style={styles.singleWorkout}>
-          <Image source={workoutCat.categoryPicture} style={styles.image} />
+          <Image
+            source={
+              workoutCat.categoryPicture ? workoutCat.categoryPicture : null
+            }
+            style={styles.image}
+          />
           <View style={styles.idTitle}>
             <CONST_boldText ownStyle={{ fontSize: 20 }}>
               {props.historyData.item.title}
@@ -40,11 +49,11 @@ const C_historyWorkout = (props) => {
             <CONST_boldText
               ownStyle={{ fontSize: 20, color: CONST_Colors.primary }}
             >
-              {history.date.getDate()}
+              {objDate ? objDate.getDate() : date.getDate()}
               {"."}
-              {history.date.getMonth()}
+              {objDate ? objDate.getMonth() : date.getMonth()}
               {"."}
-              {history.date.getFullYear()}
+              {objDate ? objDate.getFullYear() : date.getFullYear()}
             </CONST_boldText>
           </View>
         </View>
@@ -58,6 +67,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 15,
     borderColor: "#ccc",
     borderWidth: 1,
+    backgroundColor: "white",
     marginVertical: 10,
     padding: 15,
   },

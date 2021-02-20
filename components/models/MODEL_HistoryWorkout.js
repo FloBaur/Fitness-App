@@ -1,8 +1,8 @@
 class MODEL_HistoryWorkout {
-  constructor(id, title, workout, catId) {
+  constructor(id, title, date, catId, workout) {
     this.id = id;
     this.title = title;
-    this.date = new Date();
+    this.date = date;
     this.catId = catId;
     this.workout = workout;
   }

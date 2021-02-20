@@ -43,7 +43,6 @@ const C_singleSetWorkout = (props) => {
 
   const doneSetHandler = (id) => {
     const color = moreOrLess(reps, weight);
-    console.log("Die Farbe ist" + color);
     props.onDone(id, reps, weight, color);
   };
 

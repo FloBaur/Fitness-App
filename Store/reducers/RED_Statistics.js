@@ -1,6 +1,7 @@
 import * as exerciseActions from "../actions/ACTION_Statistics";
 
 import MODEL_Star from "../../components/models/MODEL_Star";
+import MODEL_HistoryWorkout from "../../components/models/MODEL_HistoryWorkout";
 
 const initialState = {
   workoutHistory: [],
@@ -18,11 +19,28 @@ const statisticReducer = (state = initialState, action) => {
         ...state,
         allStars: state.allStars.concat(myStars),
       };
-
     case exerciseActions.ADD_WORKOUT_TO_HISTORY:
+      console.log("Reducer Workout");
+      console.log(action.workoutData.workout);
+
       return {
         ...state,
-        workoutHistory: state.workoutHistory.concat(action.workout),
+        workoutHistory: state.workoutHistory.concat(action.workoutData.workout),
+      };
+
+    case exerciseActions.LOAD_HISTORY_WORKOUTS:
+      return {
+        ...state,
+        workoutHistory: action.workouts.map(
+          (work) =>
+            new MODEL_HistoryWorkout(
+              work.id,
+              work.title,
+              work.date,
+              work.catID,
+              JSON.parse(work.workout)
+            )
+        ),
       };
 
     default:

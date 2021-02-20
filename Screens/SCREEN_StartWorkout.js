@@ -20,6 +20,7 @@ import * as statisticActions from "../Store/actions/ACTION_Statistics";
 import MODEL_HistoryWorkout from "../components/models/MODEL_HistoryWorkout";
 
 const SCREEN_StartWorkout = (props) => {
+  const dispatch = useDispatch();
   const chosenWorkout = useSelector((state) =>
     state.exercises.workouts.find(
       (workout) => workout.id === props.route.params.workoutId
@@ -29,14 +30,14 @@ const SCREEN_StartWorkout = (props) => {
   const myCurrentWorkout = useSelector(
     (state) => state.exercises.currentWorkout
   );
-  const dispatch = useDispatch();
 
   if (myCurrentWorkout.length === chosenWorkout.exercises.length) {
     const historyWorkout = new MODEL_HistoryWorkout(
       Math.floor(Math.random() * 1000),
       props.route.params.workoutTitle,
-      myCurrentWorkout,
-      props.route.params.workoutCatID
+      new Date(),
+      props.route.params.workoutCatID,
+      myCurrentWorkout
     );
 
     Alert.alert(
@@ -67,7 +68,6 @@ const SCREEN_StartWorkout = (props) => {
   let doneWorkoutIds = [];
   myCurrentWorkout.map((workout) => doneWorkoutIds.push(workout.currentId));
 
-  console.log(doneWorkoutIds);
   return (
     <View style={styles.screen}>
       <View style={{ marginTop: 10 }}>

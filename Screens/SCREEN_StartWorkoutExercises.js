@@ -81,7 +81,7 @@ const SCREEN_StartWorkoutExercises = (props) => {
                 currentId: props.route.params.currentId,
                 picture: myExercise.imageUri,
                 title: myExercise.title,
-                presets: myExercise.exercises,
+                // presets: myExercise.exercises,
                 // CatId:
                 exercise: set,
               };

@@ -24,6 +24,8 @@ import {
   dropTableWorkouts,
 } from "./Helpers/HELP_Db";
 
+import { initHistory, dropTableHistory } from "./Helpers/HELP_Statistics";
+
 // dropTableExercises()
 //   .then(() => {
 //     console.log("Dropped Table");
@@ -36,6 +38,15 @@ import {
 // dropTableSets()
 //   .then(() => {
 //     console.log("Dropped Table");
+//   })
+//   .catch((err) => {
+//     console.log("Drop failed " + err);
+//     throw err;
+//   });
+
+// dropTableHistory()
+//   .then(() => {
+//     console.log("Dropped Table History");
 //   })
 //   .catch((err) => {
 //     console.log("Drop failed " + err);
@@ -63,6 +74,15 @@ initSets()
 initWorkouts()
   .then(() => {
     console.log("Initialized Workouts");
+  })
+  .catch((err) => {
+    console.log("Initializing failed " + err);
+    throw err;
+  });
+
+initHistory()
+  .then(() => {
+    console.log("Initialized History");
   })
   .catch((err) => {
     console.log("Initializing failed " + err);

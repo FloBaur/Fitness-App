@@ -52,5 +52,3 @@ export const fetchWrkRelExMN = (id) => {
     });
   });
 };
-
-//Ich brauche hier  noch ein delete

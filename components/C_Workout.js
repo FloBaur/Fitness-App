@@ -13,7 +13,12 @@ const C_Workout = (props) => {
   return (
     <View style={{ ...styles.screen, height: props.height }}>
       <View style={styles.singleWorkout}>
-        <Image source={workoutCat.categoryPicture} style={styles.image} />
+        <Image
+          source={
+            workoutCat.categoryPicture ? workoutCat.categoryPicture : null
+          }
+          style={styles.image}
+        />
         <View style={styles.idTitle}>
           <CONST_boldText>{props.workoutData.title} </CONST_boldText>
         </View>
@@ -54,6 +59,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginVertical: 10,
     padding: 15,
+    backgroundColor: "white",
   },
   idText: {
     width: "5%",

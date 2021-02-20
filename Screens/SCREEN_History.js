@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, StyleSheet, Text, Platform, FlatList } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import C_HeaderButtons from "../components/C_HeaderButtons";
 import C_historyWorkout from "../components/C_historyWorkout";
+import * as exercisesActions from "../Store/actions/ACTION_Statistics";
 
 const SCREEN_History = (props) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(exercisesActions.loadHistoryWorkouts());
+  }, [dispatch]);
+
   const myHistory = useSelector((state) => state.statistics.workoutHistory);
+
   const revHistory = myHistory.reverse();
 
   const onPressDetailHandler = (id, title) => {
@@ -42,7 +50,6 @@ const SCREEN_History = (props) => {
           renderItem={renderHistory}
           numColumns={1}
           style={{ width: "100%" }}
-          // inverted={true}
         />
       </View>
     );
